@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Row } from 'react-bootstrap';
-import TaskCard from './TaskCard';
+import CompleteTaskCard from './CompleteTaskCard';
 
-const MyTask = () => {
-    const { data: myTasks = [], isLoading, refetch } = useQuery({
-        queryKey: ['myTasks'],
+const CompletedTask = () => {
+    const { data: completedTasks = [], isLoading, refetch } = useQuery({
+        queryKey: ['completedTasks'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:8000/addedTask');
+                const res = await fetch('http://localhost:8000/addedTask/completed');
                 const data = await res.json();
                 return data;
             }
@@ -22,15 +22,15 @@ const MyTask = () => {
             <h4 className='mb-4 text-center'>My Task</h4>
             <Row xs={1} md={2} className="g-4">
                 {
-                    myTasks?.map(myTask => <TaskCard
-                        key={myTask._id}
-                        myTask={myTask}
+                    completedTasks?.map(completedTask => <CompleteTaskCard
+                        key={completedTask._id}
+                        completedTask={completedTask}
                         refetch={refetch}>
-                    </TaskCard>)
+                    </CompleteTaskCard>)
                 }
             </Row>
         </div>
     );
 };
 
-export default MyTask;
+export default CompletedTask;

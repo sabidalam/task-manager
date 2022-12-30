@@ -1,11 +1,12 @@
 import React from 'react';
-import { Button, Card, } from 'react-bootstrap';
-import { toast } from 'react-hot-toast';
-import { FaRegClock } from 'react-icons/fa';
+import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FaRegClock } from 'react-icons/fa';
+import { toast } from 'react-hot-toast';
 
-const TaskCard = ({ myTask, refetch }) => {
-    const { _id, task, img, date, time } = myTask;
+const CompleteTaskCard = ({ completedTask, refetch }) => {
+
+    const { _id, task, img, date, time } = completedTask;
 
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure you want to delete this report?');
@@ -23,20 +24,6 @@ const TaskCard = ({ myTask, refetch }) => {
                 })
         }
     };
-
-    const handleCompleteTask = id => {
-        fetch(`http://localhost:8000/addedTask/${id}`, {
-            method: 'PUT',
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
-                    toast.success('Task Completed');
-                    refetch();
-                }
-            })
-    }
 
     return (
         <div>
@@ -58,9 +45,8 @@ const TaskCard = ({ myTask, refetch }) => {
                                 </div>
                             </Card.Text>
 
-                            <Button className='btn btn-sm me-3'>Update</Button>
                             <Button onClick={() => handleDelete(_id)} className='btn btn-sm me-3' variant='danger'>Delete</Button>
-                            <Link to='/completedTask' className='text-decoration-none'><Button onClick={() => handleCompleteTask(_id)} className='btn btn-sm' variant='success'>Completed</Button></Link>
+                            <Link to='/myTask' className='text-decoration-none'><Button className='btn btn-sm' variant='success'>Not Completed</Button></Link>
 
                         </Card.Body>
                     </div>
@@ -70,4 +56,4 @@ const TaskCard = ({ myTask, refetch }) => {
     );
 };
 
-export default TaskCard;
+export default CompleteTaskCard;
