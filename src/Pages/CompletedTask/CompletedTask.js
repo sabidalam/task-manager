@@ -8,7 +8,7 @@ const CompletedTask = () => {
         queryKey: ['completedTasks'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:8000/addedTask/completed');
+                const res = await fetch('https://task-manager-server-lime.vercel.app/addedTask/completed');
                 const data = await res.json();
                 return data;
             }
@@ -19,7 +19,7 @@ const CompletedTask = () => {
     })
     return (
         <div className='my-5 px-5'>
-            <h4 className='mb-4 text-center'>My Task</h4>
+            <h4 className='mb-4 text-center'>Completed Task</h4>
             <Row xs={1} md={2} className="g-4">
                 {
                     completedTasks?.map(completedTask => <CompleteTaskCard

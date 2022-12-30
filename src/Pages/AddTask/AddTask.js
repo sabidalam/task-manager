@@ -28,7 +28,7 @@ const AddTask = () => {
                         date: data.date,
                         time: data.time
                     };
-                    fetch('http://localhost:8000/addedTask', {
+                    fetch('https://task-manager-server-lime.vercel.app/addedTask', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

@@ -11,7 +11,7 @@ const CompleteTaskCard = ({ completedTask, refetch }) => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure you want to delete this report?');
         if (proceed) {
-            fetch(`http://localhost:8000/addedTask/${id}`, {
+            fetch(`https://task-manager-server-lime.vercel.app/addedTask/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

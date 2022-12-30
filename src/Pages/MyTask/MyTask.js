@@ -8,7 +8,7 @@ const MyTask = () => {
         queryKey: ['myTasks'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:8000/addedTask');
+                const res = await fetch('https://task-manager-server-lime.vercel.app/addedTask');
                 const data = await res.json();
                 return data;
             }
